@@ -1,14 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Contact from './Contact';
 import css from './ContactList.module.css';
 
-function ContactList({ contacts, filter, onBtnClick }) {
-  const renderingContacts = filterContacts(contacts, filter);
+function ContactList({ contacts, onBtnClick }) {
+ 
 
   return (
     <ul className={css.contact_list}>
-      {renderingContacts.map((contact) => (
+      {contacts.map((contact) => (
         <li className={css.contact_item} key={contact.id}>
           <Contact
             name={contact.name}
@@ -28,13 +27,3 @@ ContactList.propTypes = {
 };
 
 export default ContactList;
-
-function filterContacts(contacts, filter) {
-  if (filter === '') {
-    return contacts;
-  }
-
-  return contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-}
